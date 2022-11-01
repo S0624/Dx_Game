@@ -1,14 +1,13 @@
 #pragma once
 #include"SceneBase.h"
-#include"Player.h"
 
-class SceneMain : public SceneBase			//ベースクラスを継承してタイトルクラスの作成
+class SceneResult : public SceneBase			//ベースクラスを継承してタイトルクラスの作成
 {
 public:
-	SceneMain();
-	virtual ~SceneMain();
+	SceneResult();
+	virtual ~SceneResult() {}
 
-	virtual void init()override;
+	virtual void init()override { m_isEnd = false; }
 	virtual void end()override {}
 
 	virtual void update()override;
@@ -18,5 +17,4 @@ public:
 private:
 	bool m_isEnd;
 
-	Player* m_pPlayer;
 };

@@ -1,30 +1,27 @@
 #include"DxLib.h"
-#include"SceneTitle.h"
+#include"SceneResult.h"
 #include"Pad.h"
 
 namespace
 {
-	const char* const kTitleText = "タイトル";
+	const char* const kTitleText = "リザルト";
 	const char* const kExplanationText = "1ボタンを押してください";
 }
-
-SceneTitle::SceneTitle() :
+SceneResult::SceneResult() :
 	m_isEnd(-1)
 {
 
 }
 
-void SceneTitle::update()
+void SceneResult::update()
 {
-	//int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	//if (padState & PAD_INPUT_1)
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		m_isEnd = true;					//mainに切り替え
 	}
 }
 
-void SceneTitle::draw()
+void SceneResult::draw()
 {
 	DrawString(620, 480, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
 	DrawString(620, 580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
