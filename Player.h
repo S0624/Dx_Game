@@ -18,8 +18,5 @@ private:
 	Vec2 m_vec;
 	Vec2 m_size;
 
-	
 	float m_fieldY;
-	//’n–Ê‚Æ‚Ì“–‚½‚è
-	bool m_isField;
 };
