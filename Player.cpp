@@ -24,7 +24,7 @@ Player::~Player()
 
 void Player::init()
 {
-	m_pos.x = 10;
+	m_pos.x = 40;
 	m_pos.y = 650;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
