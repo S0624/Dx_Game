@@ -44,7 +44,6 @@ void Enemy::updata()
 
 	if (m_pos.x < 0 - 40)
 	{
-		m_pos.x = 0 - 40;
 		m_isExist = true;
 	}
 }
@@ -57,6 +56,6 @@ void Enemy::draw()
 	DrawBox(getPos().x - 5, getPos().y - 5, getPos().x  + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);		//デバッグ用に当たり判定
 
 
-	//DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", m_pos.x);
-	//DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", m_pos.y);
+	DrawFormatString(0, 100, GetColor(255, 255, 255), "x:%f", m_pos.x);
+	DrawFormatString(0, 120, GetColor(255, 255, 255), "y:%f", m_pos.y);
 }
