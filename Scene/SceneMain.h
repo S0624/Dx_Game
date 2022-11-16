@@ -16,7 +16,7 @@ public:
 	virtual void update()override;
 	virtual void draw() override;
 
-	virtual void isCol();
+	virtual bool isCol();
 
 	virtual bool isEnd()override { return m_isEnd; }
 private:

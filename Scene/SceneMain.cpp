@@ -55,7 +55,7 @@ void SceneMain::update()
 	{
 		pEnemy->updata();
 	}
-	
+
 	//if (Pad::isTrigger(PAD_INPUT_1))
 	//{
 	//	m_isEnd = true;					//mainに切り替え
@@ -67,24 +67,34 @@ void SceneMain::update()
 
 	//	assert(pEnemy);				//バグがあったらわざと止める処理
 	//	pEnemy->updata();
-	for (auto& pEnemy : m_pEnemy)
+
+	//for (auto& pEnemy : m_pEnemy)
+	//{
+	//	//pEnemy->updata();
+	//
+	//	if (m_pPlayer->getPos().x > pEnemy->getBottomRight().x ||				//shotと敵の当たり判定
+	//		m_pPlayer->getBottomRight().x < pEnemy->getPos().x ||
+	//		m_pPlayer->getPos().y > pEnemy->getBottomRight().y ||
+	//		m_pPlayer->getBottomRight().y < pEnemy->getPos().y)
+	//	{
+	//		DrawString(0, 250, "当たってない", GetColor(255, 255, 255));								//当たっていたらtrueを返す
+	//	}
+	//	else
+	//	{
+	//		DrawString(0, 250, "当たった", GetColor(255, 255, 255));												//当たっていなかったらfalseを返す
+	//	}
+	//}
+
+	if (isCol() == false)
 	{
-		//pEnemy->updata();
-	
-		if (m_pPlayer->getPos().x > pEnemy->getBottomRight().x ||				//shotと敵の当たり判定
-			m_pPlayer->getBottomRight().x < pEnemy->getPos().x ||
-			m_pPlayer->getPos().y > pEnemy->getBottomRight().y ||
-			m_pPlayer->getBottomRight().y < pEnemy->getPos().y)
-		{
-			DrawString(0, 250, "当たってない", GetColor(255, 255, 255));								//当たっていたらtrueを返す
-		}
-		else
-		{
-			DrawString(0, 250, "当たった", GetColor(255, 255, 255));												//当たっていなかったらfalseを返す
-		}
+		DrawString(0, 600, "当たってない", GetColor(255, 255, 255));
+	}
+	if (isCol() == true)
+	{
+		m_pPlayer->Dead();
+		DrawString(0, 500, "当たった", GetColor(255, 255, 255));
 	}
 }
-
 void SceneMain::draw()
 {
 	m_pPlayer->draw();
@@ -97,15 +107,26 @@ void SceneMain::draw()
 
 	for (auto& pEnemy : m_pEnemy)
 	{
-	DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", pEnemy->getPos().x);
-	DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", pEnemy->getBottomRight().y);
+		DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", pEnemy->getPos().x);
+		DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", pEnemy->getBottomRight().y);
 	}
 	//DrawString(620, 480, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
 	//DrawString(620, 580, kExplanationText, GetColor(255, 255, 255));			//タイトル画面の表示
 }
 
-void SceneMain::isCol()
+bool SceneMain::isCol()
 {
-
-
+	for (auto& pEnemy : m_pEnemy)
+	{
+		//pEnemy->updata();
+		//if (pEnemy->isExsist() == false)
+		if (m_pPlayer->getPos().x > pEnemy->getBottomRight().x ||				//shotと敵の当たり判定
+			m_pPlayer->getBottomRight().x < pEnemy->getPos().x ||
+			m_pPlayer->getPos().y > pEnemy->getBottomRight().y ||
+			m_pPlayer->getBottomRight().y < pEnemy->getPos().y)
+		{
+			return false;							//当たっていたらtrueを返す
+		}
+		return true;
+	}
 }
