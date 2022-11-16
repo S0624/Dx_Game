@@ -35,5 +35,5 @@ void SceneTitle::draw()
 {
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kTitleText, -1)) / 2, 480, kTitleText, GetColor(255, 255, 255));			//タイトル画面の表示
 	DrawString((Game::kScreenWindth - GetDrawStringWidth(kExplanationText, -1)) / 2, 580, kExplanationText, GetColor(kColor, kColor, kColor));			//タイトル画面の表示
-	DrawString((Game::kScreenWindth - GetDrawStringWidth(kExplanationText, -1)) / 2, 580, kExplanationText, GetColor(kColor, kColor, kColor));			//タイトル画面の表示
+	//DrawString((Game::kScreenWindth - GetDrawStringWidth(kExplanationText, -1)) / 2, 580, kExplanationText, GetColor(kColor, kColor, kColor));			//タイトル画面の表示
 }
