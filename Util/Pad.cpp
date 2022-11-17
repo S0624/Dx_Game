@@ -1,5 +1,5 @@
 #include "Pad.h"
-#include "DxLib.h"
+#include<DxLib.h>
 
 namespace
 {

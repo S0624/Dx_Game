@@ -1,8 +1,11 @@
 #pragma once
 #include"SceneBase.h"
-#include"Player.h"
-#include"Enemy.h"
+//#include"Player.h"
+//#include"Enemy.h"
 #include<vector>
+
+class Player;
+class Enemy;
 
 class SceneMain : public SceneBase			//ベースクラスを継承してタイトルクラスの作成
 {

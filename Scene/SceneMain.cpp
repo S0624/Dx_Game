@@ -1,5 +1,7 @@
-#include"DxLib.h"
+#include<DxLib.h>
 #include"SceneMain.h"
+#include"Player.h"
+#include"Enemy.h"
 #include"Pad.h"
 #include"game.h"
 #include<cassert>
