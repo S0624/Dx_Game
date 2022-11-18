@@ -2,7 +2,7 @@
 #include"SceneBase.h"
 //#include"Player.h"
 //#include"Enemy.h"
-#include<vector>
+//#include<vector>
 
 class Player;
 class Enemy;
@@ -14,7 +14,7 @@ public:
 	virtual ~SceneMain();
 
 	virtual void init()override;
-	virtual void end()override {}
+	virtual void end()override;
 
 	virtual void update()override;
 	virtual void draw() override;
@@ -24,7 +24,9 @@ public:
 	virtual bool isEnd()override { return m_isEnd; }
 private:
 	bool m_isEnd;
+	int m_Plauerhandle;
+	int m_Enemyhandle;
 
 	Player* m_pPlayer;
-	std::vector<Enemy*> m_pEnemy;
+	Enemy* m_pEnemy;
 };

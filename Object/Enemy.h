@@ -10,8 +10,10 @@ public:
 	//virtual void start(Vec2 pos);	//エネミーの生成開始
 
 	virtual void init();
+	void setGraph(int handle) { m_handle = handle; }
 	virtual void updata();
 	virtual void draw();
+
 
 	bool isExsist()const { return m_isExist; }		//存在するか
 
@@ -24,8 +26,11 @@ private:
 	Vec2 m_pos;
 	Vec2 m_vec;
 	Vec2 m_size;
+	int m_handle;
 
 	bool m_isExist;		//存在するか
+
+	int m_waitFrame;
 
 //	float m_fieldY;
 };

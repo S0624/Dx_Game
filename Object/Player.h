@@ -8,6 +8,7 @@ public:
 	~Player();
 
 	virtual void init();
+	void setGraph(int handle) { m_handle = handle; }
 	virtual void updata();
 	virtual void draw();
 	
@@ -24,6 +25,7 @@ private:
 	Vec2 m_pos;
 	Vec2 m_vec;
 	Vec2 m_size;
+	int m_handle;
 
 	bool m_isDead;
 
