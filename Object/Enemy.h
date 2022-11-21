@@ -10,6 +10,7 @@ public:
 	//virtual void start(Vec2 pos);	//エネミーの生成開始
 
 	virtual void init();
+	virtual void end() {}
 	void setGraph(int handle) { m_handle = handle; }
 	virtual void updata();
 	virtual void draw();
@@ -32,5 +33,5 @@ private:
 
 	int m_waitFrame;
 
-//	float m_fieldY;
+	//	float m_fieldY;
 };

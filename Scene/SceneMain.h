@@ -24,7 +24,8 @@ public:
 	virtual bool isEnd()override { return m_isEnd; }
 private:
 	bool m_isEnd;
-	int m_Plauerhandle;
+	int m_Playerhandle;
+	int m_PlayerOverhandle;
 	int m_Enemyhandle;
 
 	Player* m_pPlayer;

@@ -52,11 +52,13 @@ void Player::updata()
 		m_waitFrame--;
 		return;
 	}*/
+	if (m_isDead) return;
+
 	m_pos += m_vec;
 	//地面との当たり
 
 	bool isField = false;
-	
+
 	if (m_pos.y > m_fieldY - m_size.y)
 	{
 		m_pos.y = m_fieldY - m_size.y;
@@ -66,7 +68,7 @@ void Player::updata()
 	// キー入力処理
 
 	if (Pad::isPress(PAD_INPUT_1))
-	//if (Pad::isTrigger(PAD_INPUT_1))
+		//if (Pad::isTrigger(PAD_INPUT_1))
 	{
 		if (isField)
 		{
@@ -80,7 +82,7 @@ void Player::updata()
 
 void Player::draw()
 {
-	
+
 	if (m_isDead)
 	{
 		m_handle = LoadGraph("date/usa_Over.png");
@@ -91,9 +93,9 @@ void Player::draw()
 
 	//DrawBox(m_pos.x, m_pos.y, m_pos.x + m_size.x, m_pos.y + m_size.y, GetColor(0, 255, 255), false);
 	DrawGraph(m_pos.x, m_pos.y, m_handle, true);
-	//DrawBox(getPos().x - 5, getPos().y - 5, getPos().x + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);		//デバッグ用に当たり判定
+	DrawBox(getPos().x - 5, getPos().y - 5, getPos().x + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);		//デバッグ用に当たり判定
 
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "x:%f", m_pos.x);
 	DrawFormatString(0, 40, GetColor(255, 255, 255), "y:%f", m_pos.y);
-	
+
 }

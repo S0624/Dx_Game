@@ -7,7 +7,7 @@ namespace
 {
 	float kEnemySpeed = -5.5f;			//移動速度
 
-	constexpr int kWaitFrameMin = 60;		//待ち時間
+	constexpr int kWaitFrameMin = 30;		//待ち時間
 	constexpr int kWaitFrameMax = 180;		//待ち時間
 }
 
@@ -54,13 +54,19 @@ void Enemy::updata()
 		return;
 	}
 
-	m_vec.x = kEnemySpeed ;
+	m_vec.x = kEnemySpeed;
 	m_pos += m_vec;
 
 	if (m_pos.x < 0 - m_size.y)
 	{
 		m_pos.x = 0 - m_size.y;
 		m_isExist = true;
+	}
+
+	if (m_isExist == true)
+	{
+		init();
+		m_isExist = false;
 	}
 }
 
@@ -69,9 +75,7 @@ void Enemy::draw()
 	DrawFormatString(0, 200, GetColor(255, 0, 0), "w:%d", m_waitFrame);
 	if (m_isExist)return;
 	DrawGraph(m_pos.x, m_pos.y, m_handle, true);
-	
-	//DrawBox(getPos().x - 5, getPos().y - 5, getPos().x  + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);		//デバッグ用に当たり判定
-
+	DrawBox(getPos().x - 5, getPos().y - 5, getPos().x + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);
 
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "x:%f", m_pos.x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y:%f", m_pos.y);
