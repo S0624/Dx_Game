@@ -75,7 +75,7 @@ void Enemy::draw()
 	DrawFormatString(0, 200, GetColor(255, 0, 0), "w:%d", m_waitFrame);
 	if (m_isExist)return;
 	DrawGraph(m_pos.x, m_pos.y, m_handle, true);
-	DrawBox(getPos().x - 5, getPos().y - 5, getPos().x + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);
+	//DrawBox(getPos().x - 5, getPos().y - 5, getPos().x + m_size.x + 5, getPos().y + m_size.y + 5, GetColor(255, 255, 255), false);
 
 	DrawFormatString(0, 100, GetColor(255, 255, 255), "x:%f", m_pos.x);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "y:%f", m_pos.y);
