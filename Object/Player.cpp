@@ -85,7 +85,7 @@ void Player::draw()
 
 	if (m_isDead)
 	{
-		m_handle = LoadGraph("date/usa_Over.png");
+		//m_handle = LoadGraph("date/usa_Over.png");
 		DrawGraph(m_pos.x, m_pos.y, m_handle, true);
 		return;
 	}

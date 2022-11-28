@@ -13,7 +13,7 @@ public:
 	virtual void updata();
 	virtual void draw();
 
-	void Dead() { m_isDead = true; }
+	void Dead(bool isDead) { m_isDead = isDead; }
 
 	virtual void setup(float fieldY) { m_fieldY = fieldY; }
 

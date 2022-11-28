@@ -40,7 +40,6 @@ SceneMain::~SceneMain()
 {
 	delete(m_pPlayer);
 	delete(m_pEnemy);
-
 }
 
 void SceneMain::init()
@@ -48,15 +47,16 @@ void SceneMain::init()
 	m_isEnd = false;
 	m_pPlayer->init();
 	m_pPlayer->setup(kFieldY);
+	m_pPlayer->setGraph(m_Playerhandle);
+	m_pPlayer->Dead(false);
 	m_pEnemy->init();
 }
 
 void SceneMain::end()
 {
-
-	DeleteGraph(m_Playerhandle);
-	DeleteGraph(m_PlayerOverhandle);
-	DeleteGraph(m_Enemyhandle);
+	//DeleteGraph(m_Playerhandle);
+	//DeleteGraph(m_PlayerOverhandle);
+	//DeleteGraph(m_Enemyhandle);
 }
 
 void SceneMain::update()
@@ -77,7 +77,7 @@ void SceneMain::update()
 	if (isCol() == true)
 	{
 		m_pPlayer->setGraph(m_PlayerOverhandle);
-		m_pPlayer->Dead();
+		m_pPlayer->Dead(true);
 	}
 	//m_pEnemy->setSpeed(1.5);
 }

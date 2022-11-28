@@ -39,9 +39,6 @@
     <ClCompile Include="Object\Enemy.cpp">
       <Filter>ソース ファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Player.cpp">
-      <Filter>ソース ファイル\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneBase.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
       <Filter>ソース ファイル\Util</Filter>
     </ClCompile>
     <ClCompile Include="Scene\SceneTitle.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Player.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
