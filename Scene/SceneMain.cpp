@@ -14,6 +14,7 @@ namespace
 	constexpr int kEnemyMax = 3;
 	// ’n–Ê‚Ì‚‚³
 	constexpr float kFieldY = 690.0f;
+	int kColorbackground = 255;
 }
 
 SceneMain::SceneMain() :
@@ -78,9 +79,11 @@ void SceneMain::update()
 		m_pPlayer->setGraph(m_PlayerOverhandle);
 		m_pPlayer->Dead();
 	}
+	//m_pEnemy->setSpeed(1.5);
 }
 void SceneMain::draw()
 {
+	SetDrawBright(kColorbackground, kColorbackground, kColorbackground);
 	m_pPlayer->draw();
 	m_pEnemy->draw();
 

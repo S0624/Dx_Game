@@ -16,5 +16,5 @@ public:
 	virtual bool isEnd()override { return m_isEnd; }
 private:
 	bool m_isEnd;
-
+	int m_waitFrame;
 };

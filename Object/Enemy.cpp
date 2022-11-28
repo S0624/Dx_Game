@@ -16,6 +16,7 @@ Enemy::Enemy() :
 	m_vec(),
 	m_size(),
 	m_handle(-1),
+	m_speed(1),
 	m_isExist(false),
 	m_waitFrame(0)
 {
@@ -40,7 +41,7 @@ void Enemy::init()
 	m_pos.y = 590;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
-
+	kEnemySpeed *= m_speed;
 	//m_handle = LoadGraph("date/Enemy_blue.png");
 
 	GetGraphSizeF(m_handle, &m_size.x, &m_size.y);
@@ -68,6 +69,7 @@ void Enemy::updata()
 		init();
 		m_isExist = false;
 	}
+	
 }
 
 void Enemy::draw()

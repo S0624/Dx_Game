@@ -12,6 +12,7 @@ public:
 	virtual void init();
 	virtual void end() {}
 	void setGraph(int handle) { m_handle = handle; }
+	void setSpeed(float speed) { m_speed = speed; }
 	virtual void updata();
 	virtual void draw();
 
@@ -28,6 +29,7 @@ private:
 	Vec2 m_vec;
 	Vec2 m_size;
 	int m_handle;
+	float m_speed;
 
 	bool m_isExist;		//ë∂ç›Ç∑ÇÈÇ©
 
