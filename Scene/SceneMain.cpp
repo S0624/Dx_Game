@@ -16,7 +16,7 @@ namespace
 	int kScorecount = 0;
 	// 地面の高さ
 	constexpr float kFieldY = 690.0f;
-	int kColorbackground = 255;
+	int kColorbackground = 0;
 }
 
 SceneMain::SceneMain() :
@@ -35,8 +35,9 @@ SceneMain::SceneMain() :
 	m_Enemyhandle = LoadGraph("date/Enemy_blue.png");
 
 	m_pPlayer->setGraph(m_Playerhandle);
-
 	m_pEnemy->setGraph(m_Enemyhandle);
+
+	m_backgroundcolor = 7;
 }
 
 SceneMain::~SceneMain()
@@ -65,6 +66,19 @@ void SceneMain::end()
 
 void SceneMain::update()
 {
+	kColorbackground += m_backgroundcolor;
+	if (m_pPlayer->isDead() == false)
+	{
+		if (kColorbackground < 255)
+		{
+			return;
+		}
+	}
+	
+	if (kColorbackground > 255)
+	{
+		kColorbackground = 255;
+	}
 	m_pPlayer->updata();
 	m_pEnemy->updata();
 	if (m_pPlayer->isDead() == true)
@@ -73,7 +87,14 @@ void SceneMain::update()
 		DrawFormatString(400, 500, GetColor(255, 255, 255), "1ボタンを押してください");
 		if (Pad::isTrigger(PAD_INPUT_1))
 		{
-			m_isEnd = true;					//mainに切り替え
+			m_backgroundcolor *= -1;
+		}
+
+		if (kColorbackground < 0)
+		{
+			m_isEnd = true;					//resultに切り替え
+			m_backgroundcolor = 7;
+			kColorbackground = 0;
 		}
 	}
 
@@ -94,7 +115,7 @@ void SceneMain::update()
 		}
 		if (kScorecount > 5000)
 		{
-			m_pEnemy->setSpeed(10.5);
+			m_pEnemy->setSpeed(11.5);
 		}
 	}
 	if (isCol() == true)
@@ -118,15 +139,23 @@ void SceneMain::draw()
 
 	// 地面の描画
 	DrawLine(0, kFieldY, Game::kScreenWindth, kFieldY, GetColor(255, 255, 255));
-
-	DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", m_pEnemy->getPos().x);
-	DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", m_pEnemy->getBottomRight().y);
-
-	DrawFormatString(0, 150, GetColor(255, 255, 255), "%d", kScorecount);
-	//if (m_Scorecount > 1000)
-	/*{
-		DrawFormatString(0, 400, GetColor(255, 255, 255), "SPEED UP");
-	}*/
+	DrawFormatString(0, 150, GetColor(255, 255, 255), "score : %d", kScorecount);
+	if (kScorecount <= 1000)
+	{
+		DrawFormatString(0, 100, GetColor(255, 255, 255), "SpeedLevel : 1");
+	}
+	if (kScorecount > 1000 && kScorecount <= 2500)
+	{
+		DrawFormatString(0, 100, GetColor(255, 255, 255), "SpeedLevel : 2");
+	}
+	if (kScorecount > 2500 && kScorecount <= 5000)
+	{
+		DrawFormatString(0, 100, GetColor(255, 255, 255), "SpeedLevel : 3");
+	}
+	if (kScorecount > 5000)
+	{
+		DrawFormatString(0, 100, GetColor(255, 255, 255), "SpeedLevel : 4");
+	}
 }
 
 bool SceneMain::isCol()
