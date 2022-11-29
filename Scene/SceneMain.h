@@ -19,6 +19,7 @@ public:
 	virtual void update()override;
 	virtual void draw() override;
 
+	int getscore() const;
 	virtual bool isCol();
 
 	virtual bool isEnd()override { return m_isEnd; }
@@ -27,7 +28,7 @@ private:
 	int m_Playerhandle;
 	int m_PlayerOverhandle;
 	int m_Enemyhandle;
-	int m_Scorecount;
+	int m_backgroundcolor;
 
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;

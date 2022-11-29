@@ -4,6 +4,7 @@
 #include"Enemy.h"
 #include"Pad.h"
 #include"game.h"
+#include"SceneResult.h"
 #include<cassert>
 
 namespace
@@ -12,6 +13,7 @@ namespace
 	const char* const kExplanationText = "1ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢";
 
 	constexpr int kEnemyMax = 3;
+	int kScorecount = 0;
 	// ’n–Ê‚Ì‚‚³
 	constexpr float kFieldY = 690.0f;
 	int kColorbackground = 255;
@@ -24,7 +26,7 @@ SceneMain::SceneMain() :
 	m_Playerhandle(-1),
 	m_PlayerOverhandle(-1),
 	m_Enemyhandle(),
-	m_Scorecount()
+	m_backgroundcolor()
 {
 	m_pPlayer = new Player;
 	m_pEnemy = new Enemy;
@@ -45,7 +47,7 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
-	m_Scorecount = 0;
+	kScorecount = 0;
 	m_isEnd = false;
 	m_pPlayer->init();
 	m_pPlayer->setup(kFieldY);
@@ -79,18 +81,18 @@ void SceneMain::update()
 	{
 		if (m_pPlayer->isDead() == false)
 		{
-			m_Scorecount++;
+			kScorecount++;
 		}
 		m_pEnemy->setSpeed(5.5);
-		if (m_Scorecount > 1000)
+		if (kScorecount > 1000)
 		{
 			m_pEnemy->setSpeed(7.5);
 		}
-		if (m_Scorecount > 2500)
+		if (kScorecount > 2500)
 		{
 			m_pEnemy->setSpeed(9.5);
 		}
-		if (m_Scorecount > 5000)
+		if (kScorecount > 5000)
 		{
 			m_pEnemy->setSpeed(10.5);
 		}
@@ -101,6 +103,13 @@ void SceneMain::update()
 		m_pPlayer->Dead(true);
 	}
 }
+int SceneMain::getscore()const
+{
+	int Scorecount = 0;
+	Scorecount = kScorecount;
+	return Scorecount;
+}
+
 void SceneMain::draw()
 {
 	SetDrawBright(kColorbackground, kColorbackground, kColorbackground);
@@ -113,7 +122,7 @@ void SceneMain::draw()
 	DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", m_pEnemy->getPos().x);
 	DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", m_pEnemy->getBottomRight().y);
 
-	DrawFormatString(0, 150, GetColor(255, 255, 255), "%d", m_Scorecount);
+	DrawFormatString(0, 150, GetColor(255, 255, 255), "%d", kScorecount);
 	//if (m_Scorecount > 1000)
 	/*{
 		DrawFormatString(0, 400, GetColor(255, 255, 255), "SPEED UP");
