@@ -27,6 +27,7 @@ private:
 	int m_Playerhandle;
 	int m_PlayerOverhandle;
 	int m_Enemyhandle;
+	int m_Scorecount;
 
 	Player* m_pPlayer;
 	Enemy* m_pEnemy;

@@ -17,4 +17,6 @@ public:
 private:
 	bool m_isEnd;
 	int m_waitFrame;
+	int m_backgroundcolor;
+	int m_handle;
 };

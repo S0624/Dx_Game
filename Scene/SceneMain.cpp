@@ -23,7 +23,8 @@ SceneMain::SceneMain() :
 	m_pEnemy(nullptr),
 	m_Playerhandle(-1),
 	m_PlayerOverhandle(-1),
-	m_Enemyhandle()
+	m_Enemyhandle(),
+	m_Scorecount()
 {
 	m_pPlayer = new Player;
 	m_pEnemy = new Enemy;
@@ -44,6 +45,7 @@ SceneMain::~SceneMain()
 
 void SceneMain::init()
 {
+	m_Scorecount = 0;
 	m_isEnd = false;
 	m_pPlayer->init();
 	m_pPlayer->setup(kFieldY);
@@ -73,13 +75,31 @@ void SceneMain::update()
 		}
 	}
 
-	if (isCol() == false) {}
+	if (isCol() == false) 
+	{
+		if (m_pPlayer->isDead() == false)
+		{
+			m_Scorecount++;
+		}
+		m_pEnemy->setSpeed(5.5);
+		if (m_Scorecount > 1000)
+		{
+			m_pEnemy->setSpeed(7.5);
+		}
+		if (m_Scorecount > 2500)
+		{
+			m_pEnemy->setSpeed(9.5);
+		}
+		if (m_Scorecount > 5000)
+		{
+			m_pEnemy->setSpeed(10.5);
+		}
+	}
 	if (isCol() == true)
 	{
 		m_pPlayer->setGraph(m_PlayerOverhandle);
 		m_pPlayer->Dead(true);
 	}
-	//m_pEnemy->setSpeed(1.5);
 }
 void SceneMain::draw()
 {
@@ -92,6 +112,12 @@ void SceneMain::draw()
 
 	DrawFormatString(0, 60, GetColor(255, 255, 255), "x:%f", m_pEnemy->getPos().x);
 	DrawFormatString(0, 80, GetColor(255, 255, 255), "y:%f", m_pEnemy->getBottomRight().y);
+
+	DrawFormatString(0, 150, GetColor(255, 255, 255), "%d", m_Scorecount);
+	//if (m_Scorecount > 1000)
+	/*{
+		DrawFormatString(0, 400, GetColor(255, 255, 255), "SPEED UP");
+	}*/
 }
 
 bool SceneMain::isCol()

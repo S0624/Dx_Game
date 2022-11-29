@@ -5,7 +5,7 @@
 
 namespace
 {
-	float kEnemySpeed = -5.5f;			//ˆÚ“®‘¬“x
+	//float kEnemySpeed = -0.0f;			//ˆÚ“®‘¬“x
 
 	constexpr int kWaitFrameMin = 30;		//‘Ò‚¿ŽžŠÔ
 	constexpr int kWaitFrameMax = 180;		//‘Ò‚¿ŽžŠÔ
@@ -41,7 +41,7 @@ void Enemy::init()
 	m_pos.y = 590;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
-	kEnemySpeed *= m_speed;
+	m_speed;
 	//m_handle = LoadGraph("date/Enemy_blue.png");
 
 	GetGraphSizeF(m_handle, &m_size.x, &m_size.y);
@@ -55,7 +55,7 @@ void Enemy::updata()
 		return;
 	}
 
-	m_vec.x = kEnemySpeed;
+	m_vec.x = -m_speed;
 	m_pos += m_vec;
 
 	if (m_pos.x < 0 - m_size.y)

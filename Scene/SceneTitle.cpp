@@ -5,35 +5,43 @@
 
 namespace
 {
-	const char* const kTitleText = "タイトル";
+	const char* const kTitleText = "Jump";
 	const char* const kExplanationText = "1ボタンを押してください";
+	int kColorbackground = 0;
 	int kColorletter = 255;
-	int kColorbackground = 255;
 	constexpr int kWaitFrameMin = 120;		//待ち時間
 	//constexpr int kWaitFrameMax = 180;		//待ち時間
 }
 
 SceneTitle::SceneTitle() :
 	m_isEnd(-1),
-	m_waitFrame()
+	m_waitFrame(),
+	m_handle(),
+	m_backgroundcolor()
 {
 	m_waitFrame = kWaitFrameMin;
+	m_handle = LoadGraph("date/frame1.png");
+	m_backgroundcolor = 7;
 }
 
 void SceneTitle::update()
 {
-	//int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	//if (padState & PAD_INPUT_1)
+	kColorbackground +=  m_backgroundcolor;
+	if (kColorbackground > 255)
+	{
+		kColorbackground = 255;
+	}
 	if (Pad::isTrigger(PAD_INPUT_1))
 	{
-		//kColorbackground += -15;
-		//if (kColorbackground == 0)
-		{
-			m_isEnd = true;					//mainに切り替え
-		}
-		//return;
+		m_backgroundcolor *= -1;
 	}
 
+	if (kColorbackground < 0)
+	{
+		m_isEnd = true;					//mainに切り替え
+		m_backgroundcolor = 7;
+		kColorbackground = 0;
+	}
 
 	if (m_waitFrame > 0)
 	{
@@ -43,8 +51,9 @@ void SceneTitle::update()
 	
 	if (m_waitFrame == 0)
 	{
-		kColorletter += -15;
+		kColorletter += -7;
 	}
+
 	if (kColorletter < 0)
 	{
 		kColorletter = 255;
@@ -58,6 +67,8 @@ void SceneTitle::update()
 void SceneTitle::draw()
 {
 	SetDrawBright(kColorbackground, kColorbackground, kColorbackground);
+	DrawGraph(0, 0, m_handle, true);
+	DrawFormatString(0, 500, GetColor(255, 0, 0), "%d", m_backgroundcolor);
 	DrawFormatString(0, 200, GetColor(255, 0, 0), "w:%d", m_waitFrame);
 	DrawFormatString(0, 255, GetColor(255, 0, 0), "%d", kColorletter);
 	DrawFormatString(0, 300, GetColor(255, 0, 0), "w:%d", kColorbackground);
