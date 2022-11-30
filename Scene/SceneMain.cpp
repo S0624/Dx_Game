@@ -44,6 +44,10 @@ SceneMain::~SceneMain()
 {
 	delete(m_pPlayer);
 	delete(m_pEnemy);
+
+	DeleteGraph(m_Playerhandle);
+	DeleteGraph(m_PlayerOverhandle);
+	DeleteGraph(m_Enemyhandle);
 }
 
 void SceneMain::init()
@@ -59,9 +63,9 @@ void SceneMain::init()
 
 void SceneMain::end()
 {
-	//DeleteGraph(m_Playerhandle);
-	//DeleteGraph(m_PlayerOverhandle);
-	//DeleteGraph(m_Enemyhandle);
+	DeleteGraph(m_Playerhandle);
+	DeleteGraph(m_PlayerOverhandle);
+	DeleteGraph(m_Enemyhandle);
 }
 
 void SceneMain::update()

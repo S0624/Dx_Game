@@ -23,6 +23,11 @@ SceneTitle::SceneTitle() :
 	m_backgroundcolor = 7;
 }
 
+SceneTitle::~SceneTitle()
+{
+	DeleteGraph(m_handle);
+}
+
 void SceneTitle::update()
 {
 	kColorbackground +=  m_backgroundcolor;
