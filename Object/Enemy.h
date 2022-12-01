@@ -7,22 +7,18 @@ public:
 	Enemy();
 	~Enemy();
 
-	//virtual void start(Vec2 pos);	//エネミーの生成開始
-
-	virtual void init();
+	virtual void init();		//エネミーの初期化
 	virtual void end() {}
-	void setGraph(int handle) { m_handle = handle; }
-	void setSpeed(float speed) { m_speed = speed; }
-	virtual void updata();
-	virtual void draw();
+	void setGraph(int handle) { m_handle = handle; }		//エネミーの画像読み込み
+	void setSpeed(float speed) { m_speed = speed; }			//エネミーの移動速度の処理
+	virtual void updata();									//エネミーの更新処理
+	virtual void draw();									//エネミーの描画
 
 
 	bool isExsist()const { return m_isExist; }		//存在するか
 
 	Vec2 getPos() const { return m_pos; }		//情報の取得
 	Vec2 getBottomRight() const { return m_pos + m_size; }		//右上座標の取得
-
-//	virtual void setup(float fieldY) { m_fieldY = fieldY; }
 
 private:
 	Vec2 m_pos;
@@ -33,7 +29,5 @@ private:
 
 	bool m_isExist;		//存在するか
 
-	int m_waitFrame;
-
-	//	float m_fieldY;
+	int m_waitFrame;	//敵の生成時間
 };
