@@ -17,23 +17,23 @@ SceneResult::SceneResult() :
 	m_handle(),
 	m_backgroundcolor()
 {
-	m_handle = LoadGraph("date/frame1.png");
-	m_backgroundcolor = 7;
+	m_handle = LoadGraph("date/frame1.png");			//画像のセット
+	m_backgroundcolor = 7;								//フェード処理
 }
 
 void SceneResult::update()
 {
-	kColorbackground += m_backgroundcolor;
-	if (kColorbackground > 255)
+	kColorbackground += m_backgroundcolor;			//フェード処理
+	if (kColorbackground > 255)						//255より大きくなったら255にする
 	{
 		kColorbackground = 255;
 	}
-	if (Pad::isTrigger(PAD_INPUT_1))
+	if (Pad::isTrigger(PAD_INPUT_1))				//ボタンを押したらフェードインの開始
 	{
 		m_backgroundcolor *= -1;
 	}
 
-	if (kColorbackground < 0)
+	if (kColorbackground < 0)						//フェードしきったらシーンを切り返える
 	{
 		m_isEnd = true;					//タイトルに切り替え
 		m_backgroundcolor = 7;

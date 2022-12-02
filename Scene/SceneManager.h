@@ -19,7 +19,6 @@ public:
 	virtual ~SceneManager() {}
 
 	void init(SceneKind kind = kSceneKindTitle);
-	//void init(SceneKind kind = kSceneKindMain);
 	void end();
 
 	void update();
